@@ -113,3 +113,22 @@
 ## WireFrame
 
 ![Hand-Drawn-Frames](https://i.imgur.com/E3Xdg5E.jpeg)
+
+# Milestone 2 - Build Sprint 1 (Unit 8)
+## GitHub Project board
+[https://imgur.com/cBAG8QS]
+
+## Issue cards
+**Completed**
+[https://imgur.com/YBdusg7]
+
+**To Do**
+[https://imgur.com/l3wlLPh]
+
+## Issues worked on this sprint
+* Created Pet object
+* Created Recycler view for listing basic pet info
+* Created a form for uploading pet info
+* Created a screen for showing more details about pets
+  
+[https://imgur.com/a/uIAYlru]
