@@ -113,6 +113,8 @@
 ## WireFrame
 
 ![Hand-Drawn-Frames](https://i.imgur.com/E3Xdg5E.jpeg)
+https://imgur.com/2qP0yfp
+https://imgur.com/ro16cOL
 
 # Milestone 2 - Build Sprint 1 (Unit 8)
 ## GitHub Project board
