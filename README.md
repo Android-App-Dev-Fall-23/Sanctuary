@@ -113,8 +113,8 @@
 ## WireFrame
 
 ![Hand-Drawn-Frames](https://i.imgur.com/E3Xdg5E.jpeg)
-![Hand-Drawn-Frames](https://imgur.com/2qP0yfp)
-![Hand-Drawn-Frames](https://imgur.com/ro16cOL)
+(https://imgur.com/2qP0yfp.png)
+(https://imgur.com/ro16cOL.png)
 
 
 # Milestone 2 - Build Sprint 1 (Unit 8)
