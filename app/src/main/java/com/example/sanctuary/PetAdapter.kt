@@ -33,7 +33,7 @@ class PetAdapter(private val context: Context, private val pets: List<Pet>) : Re
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PetViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.pet_item, parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.lost_pet_item, parent, false)
         return PetViewHolder(itemView)
     }
 
