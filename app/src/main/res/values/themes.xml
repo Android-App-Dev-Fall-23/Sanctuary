@@ -2,8 +2,19 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.Sanctuary" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item
+            name = "colorPrimary">@color/colorPrimary</item>
+        <item
+            name = "colorAccent">@color/colorAccent</item>
+
     </style>
 
     <style name="Theme.Sanctuary" parent="Base.Theme.Sanctuary" />
+
+    <style name="BottomNavigationTheme" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="android:textColorSecondary">@color/colorAccent</item>
+    </style>
+
+
 </resources>
