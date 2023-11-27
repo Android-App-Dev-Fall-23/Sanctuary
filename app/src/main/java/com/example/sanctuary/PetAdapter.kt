@@ -28,13 +28,12 @@ class PetAdapter( private val pets: List<PetEntity>) : RecyclerView.Adapter<PetA
                 val clickedPet = pets[adapterPosition]
 
                 // Create an intent to launch the PetDetailFragment
-                val intent = Intent(itemView.context, PetDetailActivity::class.java)
+                val intent = Intent(itemView.context, DetailActivity::class.java)
                 intent.putExtra(PET_EXTRA, clickedPet)
                 itemView.context.startActivity(intent)
             }
         }
     }
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PetViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.lost_pet_item, parent, false)
@@ -71,6 +70,10 @@ class PetAdapter( private val pets: List<PetEntity>) : RecyclerView.Adapter<PetA
 //            recyclerView.addItemDecoration(dividerItemDecoration)
 //        }
     }
+
+private fun Intent.putExtra(petExtra: String, clickedPet: PetEntity) {
+
+}
 
 
 private fun Intent.putExtra(petExtra: String, pet: Pet) {
