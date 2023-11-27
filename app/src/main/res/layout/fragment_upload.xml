@@ -12,7 +12,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="Pet's Name"
+        android:layout_marginLeft="8dp"
+        android:text="Pet's Name:"
         android:textColor="@color/colorAccent"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -23,8 +24,9 @@
         android:id="@+id/Species"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Species"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="8dp"
+        android:text="Species:"
         android:textColor="@color/colorAccent"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -35,8 +37,9 @@
         android:id="@+id/Breed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Breed"
+        android:layout_marginTop="28dp"
+        android:text="Breed:"
+        android:layout_marginLeft="8dp"
         android:textColor="@color/colorAccent"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -47,8 +50,9 @@
         android:id="@+id/Color"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="Color"
+        android:layout_marginTop="72dp"
+        android:text="Color:"
+        android:layout_marginLeft="8dp"
         android:textColor="@color/colorAccent"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -60,108 +64,156 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:text="Age"
+        android:text="Age:"
+        android:layout_marginLeft="8dp"
         android:textColor="@color/colorAccent"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Color" />
 
+    <TextView
+        android:id="@+id/ownerContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Owner Contact:"
+        android:layout_marginLeft="8dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Age" />
+
+    <TextView
+        android:id="@+id/lostLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Location:"
+        android:layout_marginLeft="8dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ownerContact" />
+
+    <TextView
+        android:id="@+id/otherDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Other Details:"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lostLocation" />
+
     <EditText
         android:id="@+id/editTextName"
-        android:layout_width="280dp"
+        android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:hint="Name"
+        android:layout_marginRight="8dp"
         android:textColor="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.448"
+        app:layout_constraintHorizontal_bias="0.816"
         app:layout_constraintStart_toEndOf="@+id/Name"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <EditText
         android:id="@+id/editTextSpecies"
-        android:layout_width="280dp"
+        android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:hint="Species"
+        android:layout_marginRight="8dp"
         android:textColor="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.728"
+        app:layout_constraintHorizontal_bias="0.886"
         app:layout_constraintStart_toEndOf="@+id/Species"
         app:layout_constraintTop_toBottomOf="@+id/editTextName" />
 
     <EditText
         android:id="@+id/editTextBreed"
-        android:layout_width="280dp"
+        android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:hint="Breed"
+        android:layout_marginRight="8dp"
         android:textColor="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.792"
+        app:layout_constraintHorizontal_bias="0.907"
         app:layout_constraintStart_toEndOf="@+id/Breed"
         app:layout_constraintTop_toBottomOf="@+id/editTextSpecies" />
 
     <EditText
         android:id="@+id/editTextColor"
-        android:layout_width="280dp"
+        android:layout_width="240dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:hint="Color"
+        android:layout_marginRight="8dp"
         android:textColor="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.804"
+        app:layout_constraintHorizontal_bias="0.911"
         app:layout_constraintStart_toEndOf="@+id/Color"
         app:layout_constraintTop_toBottomOf="@+id/editTextBreed" />
 
     <EditText
         android:id="@+id/editTextAge"
-        android:layout_width="280dp"
+        android:layout_width="240dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:hint="Age"
+        android:layout_marginRight="8dp"
         android:inputType="number"
         android:textColor="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.831"
+        app:layout_constraintHorizontal_bias="0.921"
         app:layout_constraintStart_toEndOf="@+id/Age"
         app:layout_constraintTop_toBottomOf="@+id/editTextColor" />
 
     <EditText
         android:id="@+id/editTextOwnerContact"
-        android:layout_width="0dp"
+        android:layout_width="240dp"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorAccent"
         android:layout_marginTop="16dp"
         android:hint="Owner Contact"
         android:inputType="phone"
-        app:layout_constraintBottom_toTopOf="@+id/editTextLostLocation"
+        android:layout_marginRight="8dp"
+        android:textColor="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.437"
+        app:layout_constraintStart_toEndOf="@+id/ownerContact"
         app:layout_constraintTop_toBottomOf="@+id/editTextAge" />
+
 
     <EditText
         android:id="@+id/editTextLostLocation"
-        android:layout_width="0dp"
+        android:layout_width="240dp"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorAccent"
         android:layout_marginTop="16dp"
         android:hint="Lost Location"
-        app:layout_constraintBottom_toTopOf="@+id/editTextOtherDetails"
+        android:layout_marginRight="8dp"
+        android:textColor="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.875"
+        app:layout_constraintStart_toEndOf="@+id/lostLocation"
         app:layout_constraintTop_toBottomOf="@+id/editTextOwnerContact" />
-
 
     <EditText
         android:id="@+id/editTextOtherDetails"
-        android:layout_width="394dp"
-        android:layout_height="37dp"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:textColor="@color/colorAccent"
         android:hint="Other Details"
-        app:layout_constraintBottom_toTopOf="@+id/btnSubmit"
+        android:layout_marginRight="8dp"
+        android:textColor="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/otherDetails"
         app:layout_constraintTop_toBottomOf="@+id/editTextLostLocation" />
 
     <Button
@@ -171,23 +223,27 @@
         android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextOtherDetails"
+        app:layout_constraintVertical_bias="0.764" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="180dp"
         android:layout_height="164dp"
+        android:layout_marginTop="20dp"
         android:src="@drawable/ic_launcher_foreground"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextOtherDetails" />
+        app:layout_constraintTop_toBottomOf="@+id/otherDetails" />
 
     <Button
         android:id="@+id/btnSelectImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="72dp"
         android:text="Select Image"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/editTextOtherDetails" />
 
