@@ -10,9 +10,10 @@
         android:id="@+id/navigation_lost"
         android:icon="@drawable/ic_lost"
         android:title="Lost" />
-    <item
-        android:id="@+id/navigation_found"
-        android:icon="@drawable/ic_found"
-        android:title="Found" />
+
+        <item
+            android:id="@+id/navigation_login"
+            android:icon="@drawable/ic_login"
+            android:title="Login" />
 
 </menu>

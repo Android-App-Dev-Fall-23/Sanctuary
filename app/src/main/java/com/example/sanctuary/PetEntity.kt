@@ -2,6 +2,7 @@ package com.example.sanctuary
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity(tableName = "pets")
 data class PetEntity(
@@ -17,4 +18,4 @@ data class PetEntity(
     val otherDetails: String,
     val imagePath: String
 
-)
+): Serializable
