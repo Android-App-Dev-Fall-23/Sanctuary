@@ -6,6 +6,7 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -48,6 +49,8 @@ class MainActivity : AppCompatActivity(),UploadFragment.onPetEntryListener {
         if (savedInstanceState == null) {
             replaceFragment(LostFragment())
         }
+
+
 
 
     }

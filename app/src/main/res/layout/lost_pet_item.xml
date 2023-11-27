@@ -3,7 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/border"
+    android:layout_marginTop="8dp"
+    android:backgroundTint="@color/colorPrimary"
+
+    >
 
     <ImageView
         android:id="@+id/imageView"
@@ -19,12 +24,13 @@
         android:id="@+id/nameTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="32dp"
         android:text="Name: "
+        android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.121"
+        app:layout_constraintHorizontal_bias="0.112"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,6 +38,7 @@
         android:id="@+id/speciesTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
         android:text="Species: "
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/nameTv"
@@ -41,9 +48,11 @@
         android:id="@+id/lostLocationTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
         android:text="Lost Location: "
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/speciesTv"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/speciesTv"
         app:layout_constraintTop_toBottomOf="@+id/speciesTv" />
 </androidx.constraintlayout.widget.ConstraintLayout>

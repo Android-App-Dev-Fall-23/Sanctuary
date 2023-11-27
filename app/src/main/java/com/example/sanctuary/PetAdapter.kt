@@ -1,17 +1,18 @@
 package com.example.sanctuary
 
-import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 const val PET_EXTRA = "PET_EXTRA"
 class PetAdapter( private val pets: List<PetEntity>) : RecyclerView.Adapter<PetAdapter.PetViewHolder>() {
+
 
     inner class PetViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nameTextView: TextView = itemView.findViewById(R.id.nameTv)
@@ -61,9 +62,16 @@ class PetAdapter( private val pets: List<PetEntity>) : RecyclerView.Adapter<PetA
     override fun getItemCount(): Int {
         return pets.size
     }
+//    companion object {
+//        fun addItemDecoration(recyclerView: RecyclerView) {
+//            val layoutManager = LinearLayoutManager(recyclerView.context)
+//            recyclerView.layoutManager = layoutManager
+//
+//            val dividerItemDecoration = DividerItemDecoration(recyclerView.context, layoutManager.orientation)
+//            recyclerView.addItemDecoration(dividerItemDecoration)
+//        }
+    }
 
-
-}
 
 private fun Intent.putExtra(petExtra: String, pet: Pet) {
 
