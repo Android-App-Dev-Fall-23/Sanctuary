@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,6 +20,9 @@ class MainActivity : AppCompatActivity(),UploadFragment.onPetEntryListener {
         setContentView(R.layout.activity_main)
 
         val bottomNavigation: BottomNavigationView = findViewById(R.id.bottomNavigation)
+
+
+
 
         bottomNavigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
@@ -41,7 +45,14 @@ class MainActivity : AppCompatActivity(),UploadFragment.onPetEntryListener {
             }
         }
 
+        if (savedInstanceState == null) {
+            replaceFragment(LostFragment())
+        }
 
+
+    }
+    private fun replaceFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragment).commit()
     }
         override fun onPetEntryAdded(petEntry: PetEntity) {
 

@@ -8,7 +8,8 @@ class Pet (
     val age: Int= -99,
     val ownerContact: String= "",
     val lostLocation: String= "",
-    val otherDetails: String=""
+    val otherDetails: String="",
+    val imagePath: String?
 )
 {
         var found: Boolean = false

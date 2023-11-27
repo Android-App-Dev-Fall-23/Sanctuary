@@ -1,8 +1,11 @@
 package com.example.sanctuary
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.icu.util.Calendar
 import android.os.Bundle
+import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CalendarView
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import com.google.android.material.slider.Slider
 import java.lang.RuntimeException
@@ -27,7 +31,10 @@ class UploadFragment : Fragment() {
     private lateinit var editTextLostLocation: EditText
     private lateinit var editTextOtherDetails: EditText
 
-    // Declare Button property
+    private lateinit var imageView: ImageView
+    private val PICK_IMAGE_REQUEST = 1
+
+
     private lateinit var btnSubmit: Button
     interface onPetEntryListener{
         fun onPetEntryAdded(PetEntry: PetEntity)
@@ -62,34 +69,63 @@ class UploadFragment : Fragment() {
         editTextOwnerContact = view.findViewById(R.id.editTextOwnerContact)
         editTextLostLocation = view.findViewById(R.id.editTextLostLocation)
         editTextOtherDetails = view.findViewById(R.id.editTextOtherDetails)
+        imageView = view.findViewById(R.id.imageView)
 
-        btnSubmit.setOnClickListener {
-            // Retrieve values from EditTexts
-            val name = editTextName.text.toString()
-            val species = editTextSpecies.text.toString()
-            val breed = editTextBreed.text.toString()
-            val color = editTextColor.text.toString()
-            val age = editTextAge.text.toString().toIntOrNull() ?: -99
-            val ownerContact = editTextOwnerContact.text.toString()
-            val lostLocation = editTextLostLocation.text.toString()
-            val otherDetails = editTextOtherDetails.text.toString()
+        // Add a click listener to the "Select Image" button
+        view.findViewById<Button>(R.id.btnSelectImage).setOnClickListener {
+            openGallery()
 
-            // Create a new Pet entity
-            val newPet = PetEntity(
-                name = name,
-                species = species,
-                breed = breed,
-                color = color,
-                age = age,
-                ownerContact = ownerContact,
-                lostLocation = lostLocation,
-                otherDetails = otherDetails
-            )
-            // Now 'newPet' contains the values from the EditTexts
+            btnSubmit.setOnClickListener {
+                // Retrieve values from EditTexts
+                val name = editTextName.text.toString()
+                val species = editTextSpecies.text.toString()
+                val breed = editTextBreed.text.toString()
+                val color = editTextColor.text.toString()
+                val age = editTextAge.text.toString().toIntOrNull() ?: -99
+                val ownerContact = editTextOwnerContact.text.toString()
+                val lostLocation = editTextLostLocation.text.toString()
+                val otherDetails = editTextOtherDetails.text.toString()
+
+                val selectedImageUri = imageView.tag as? String
+                val imagePath = selectedImageUri ?: ""
+
+                // Create a new Pet entity
+                val newPet = PetEntity(
+                    name = name,
+                    species = species,
+                    breed = breed,
+                    color = color,
+                    age = age,
+                    ownerContact = ownerContact,
+                    lostLocation = lostLocation,
+                    otherDetails = otherDetails,
+                    imagePath = imagePath
+
+                )
+                // Now 'newPet' contains the values from the EditTexts
 
 
-            listener?.onPetEntryAdded(newPet)
+                listener?.onPetEntryAdded(newPet)
 
+            }
         }
     }
+
+    private fun openGallery() {
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        startActivityForResult(intent, PICK_IMAGE_REQUEST)
+    }
+
+    // Handle the result of the gallery intent
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null) {
+            val selectedImageUri = data.data
+            imageView.setImageURI(selectedImageUri)
+
+            imageView.tag = selectedImageUri.toString()
+        }
+    }
+
 }
