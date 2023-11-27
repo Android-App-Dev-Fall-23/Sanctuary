@@ -29,5 +29,18 @@
         app:itemActiveIndicatorStyle="@color/white"
         android:theme="@style/BottomNavigationTheme"/>
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blue"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:title="Sanctuary"
+        app:titleTextAppearance="@style/ActionBar.nameText"
+        app:titleTextColor="@color/black"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="0dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

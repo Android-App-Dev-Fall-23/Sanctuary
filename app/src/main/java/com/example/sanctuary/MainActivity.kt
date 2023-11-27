@@ -25,6 +25,8 @@ class MainActivity : AppCompatActivity(),UploadFragment.onPetEntryListener {
 
 
 
+
+
         bottomNavigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_lost -> {
