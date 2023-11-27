@@ -6,13 +6,13 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 
-private lateinit var nameTextView: TextView
-private lateinit var speciesTextView: TextView
-private lateinit var breedTextView: TextView
-private lateinit var colorTextView: TextView
-private lateinit var ageTextView: TextView
-private lateinit var lostLocationTextView: TextView
-private lateinit var otherDetailsTextView: TextView
+lateinit var nameTextView: TextView
+lateinit var speciesTextView: TextView
+lateinit var breedTextView: TextView
+lateinit var colorTextView: TextView
+lateinit var ageTextView: TextView
+lateinit var lostLocationTextView: TextView
+lateinit var otherDetailsTextView: TextView
 
 
 

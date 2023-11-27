@@ -1,14 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".PetDetailFragment">
+    android:layout_height="wrap_content">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/nameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="32dp"
+        android:text="Name: "
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <!-- Commented out EditText for the name attribute -->
+    <!--
+    <EditText
+        android:id="@+id/nameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Name" />
+    -->
+
+    <TextView
+        android:id="@+id/speciesTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Species: "
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/nameTextView"
+        app:layout_constraintTop_toBottomOf="@+id/nameTextView" />
+
+    <!-- Commented out EditText for the species attribute -->
+    <!--
+    <EditText
+        android:id="@+id/speciesEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Species" />
+    -->
+
+    <TextView
+        android:id="@+id/breedTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Breed: "
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/speciesTextView"
+        app:layout_constraintTop_toBottomOf="@+id/speciesTextView" />
+
+    <!-- Commented out EditText for the breed attribute -->
+    <!--
+    <EditText
+        android:id="@+id/breedEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Breed" />
+    -->
+
+    <TextView
+        android:id="@+id/colorTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:text="Color: "
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/breedTextView"
+        app:layout_constraintTop_toTopOf="@+id/breedTextView" />
+
+    <!-- Commented out EditText for the color attribute -->
+    <!--
+    <EditText
+        android:id="@+id/colorEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Color" />
+    -->
+
+    <TextView
+        android:id="@+id/ageTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Age: "
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/colorTextView"
+        app:layout_constraintTop_toBottomOf="@+id/colorTextView" />
+
+    <!-- Commented out EditText for the age attribute -->
+    <!--
+    <EditText
+        android:id="@+id/ageEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Age"
+        android:inputType="number" />
+    -->
+
+    <TextView
+        android:id="@+id/ownerContactTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Owner Contact: "
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/ageTextView"
+        app:layout_constraintTop_toBottomOf="@+id/ageTextView" />
+
+    <!-- Commented out EditText for the ownerContact attribute -->
+    <!--
+    <EditText
+        android:id="@+id/ownerContactEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Owner Contact" />
+    -->
+
+    <TextView
+        android:id="@+id/lostLocationTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lost Location: "
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/ownerContactTextView"
+        app:layout_constraintStart_toStartOf="@+id/ownerContactTextView"
+        app:layout_constraintTop_toBottomOf="@+id/ownerContactTextView" />
+
+    <TextView
+        android:id="@+id/otherDetailsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Other details: "
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/lostLocationTextView"
+        app:layout_constraintStart_toStartOf="@+id/lostLocationTextView"
+        app:layout_constraintTop_toBottomOf="@+id/lostLocationTextView" />
+
+    <!-- Commented out EditText for the lostLocation attribute -->
+    <!--
+    <EditText
+        android:id="@+id/lostLocationEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Lost Location" />
+    -->
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
