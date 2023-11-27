@@ -20,12 +20,20 @@ class PetAdapter( private val pets: List<PetEntity>) : RecyclerView.Adapter<PetA
         val imageView: ImageView= itemView.findViewById(R.id.imageView)
         // Add more views as needed for other attributes
 
+        init {
+            // Add a click listener to the itemView
+            itemView.setOnClickListener {
+                // Get the clicked pet
+                val clickedPet = pets[adapterPosition]
 
-
-
-
-
+                // Create an intent to launch the PetDetailFragment
+                val intent = Intent(itemView.context, PetDetailActivity::class.java)
+                intent.putExtra(PET_EXTRA, clickedPet)
+                itemView.context.startActivity(intent)
+            }
+        }
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PetViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.lost_pet_item, parent, false)
