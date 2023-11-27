@@ -9,25 +9,17 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 const val PET_EXTRA = "PET_EXTRA"
-class PetAdapter(private val context: Context, private val pets: List<Pet>) : RecyclerView.Adapter<PetAdapter.PetViewHolder>() {
+class PetAdapter( private val pets: List<PetEntity>) : RecyclerView.Adapter<PetAdapter.PetViewHolder>() {
 
-    inner class PetViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+    inner class PetViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nameTextView: TextView = itemView.findViewById(R.id.nameTv)
         val speciesTextView: TextView = itemView.findViewById(R.id.speciesTv)
         val lostLocationTextView: TextView = itemView.findViewById(R.id.lostLocationTv)
         // Add more views as needed for other attributes
 
-        init {
-            itemView.setOnClickListener(this)
-        }
 
-        override fun onClick(v: View?) {
-            val pet = pets[adapterPosition]
-            //Toast.makeText(context, movie.movieTitle,Toast.LENGTH_LONG).show()
-            val intent = Intent(context, DetailActivity::class.java)
-            intent.putExtra(PET_EXTRA, pet)
-            context.startActivity(intent)
-        }
+
+
 
 
     }
@@ -41,7 +33,7 @@ class PetAdapter(private val context: Context, private val pets: List<Pet>) : Re
         val currentPet = pets[position]
         holder.nameTextView.text = "Name: ${currentPet.name}"
         holder.speciesTextView.text = "Species: ${currentPet.species}"
-        holder.lostLocationTextView.text = "Lost Location: ${currentPet.lostLocation}"
+        holder.lostLocationTextView.text = "Last Seen: ${currentPet.lostLocation}"
         // Bind other attributes as needed
     }
 
