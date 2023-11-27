@@ -15,5 +15,6 @@ data class PetEntity(
     val ownerContact: String,
     val lostLocation: String,
     val otherDetails: String,
+    val imagePath: String
 
 )
