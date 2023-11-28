@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
@@ -28,7 +27,7 @@ class PetAdapter( private val pets: List<PetEntity>) : RecyclerView.Adapter<PetA
                 val clickedPet = pets[adapterPosition]
 
                 // Create an intent to launch the PetDetailFragment
-                val intent = Intent(itemView.context, DetailActivity::class.java)
+                val intent = Intent(itemView.context, PetDetailActivity::class.java)
                 intent.putExtra(PET_EXTRA, clickedPet)
                 itemView.context.startActivity(intent)
             }

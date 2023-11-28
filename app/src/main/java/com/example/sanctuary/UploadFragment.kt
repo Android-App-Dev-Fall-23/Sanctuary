@@ -1,25 +1,17 @@
 package com.example.sanctuary
 
 import android.app.Activity
-import android.app.Activity.RESULT_OK
 import android.content.Context
 import android.content.Intent
-import android.icu.util.Calendar
 import android.os.Bundle
 import android.provider.MediaStore
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.CalendarView
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.TextView
-import com.google.android.material.slider.Slider
-import java.lang.RuntimeException
-import java.text.SimpleDateFormat
-import java.util.Locale
+import androidx.fragment.app.Fragment
 
 class UploadFragment : Fragment() {
 
@@ -35,11 +27,7 @@ class UploadFragment : Fragment() {
     private lateinit var petImageView: ImageView
     private lateinit var selectImgButton: Button
 
-    companion object {
-        val IMAGE_REQUEST_CODE = 100
-    }
-
-
+    private val PICK_IMAGE_REQUEST = 100
     private lateinit var btnSubmit: Button
 
     interface onPetEntryListener {
@@ -84,7 +72,7 @@ class UploadFragment : Fragment() {
 
         // Add a click listener to the "Select Image" button
         selectImgButton.setOnClickListener {
-            pickImageGallery()
+            openGallery()
         }
 
         btnSubmit.setOnClickListener {
@@ -102,54 +90,27 @@ class UploadFragment : Fragment() {
             val imagePath = selectedImageUri ?: ""
 
             // Create a new Pet entity
-            if (imagePath.isNotBlank()) {
-                // Create a new Pet entity
-                val newPet = PetEntity(
-                    name = name,
-                    species = species,
-                    breed = breed,
-                    color = color,
-                    age = age,
-                    ownerContact = ownerContact,
-                    lostLocation = lostLocation,
-                    otherDetails = otherDetails,
-                    imagePath = imagePath
-                )
+            val newPet = PetEntity(
+                name = name,
+                species = species,
+                breed = breed,
+                color = color,
+                age = age,
+                ownerContact = ownerContact,
+                lostLocation = lostLocation,
+                otherDetails = otherDetails,
+                imagePath = imagePath
 
-                // Now 'newPet' contains the values from the EditTexts
-                listener?.onPetEntryAdded(newPet)
-            } else {
-                // Handle case where no image is selected
-                // Show a message to the user or prevent submission
-            }
+            )
+
+            // Now 'newPet' contains the values from the EditTexts
+            listener?.onPetEntryAdded(newPet)
         }
-
-    }
-    private fun pickImageGallery(){
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type = "image/*"
-        startActivityForResult(intent, IMAGE_REQUEST_CODE)
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?){
-        super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == IMAGE_REQUEST_CODE && resultCode == RESULT_OK){
-            val selectedImageUri = data?.data
-            if (selectedImageUri != null) {
-                petImageView.setImageURI(selectedImageUri)
-                petImageView.tag = selectedImageUri.toString()
-            }else {
-                // Set a placeholder image when no image is selected
-                petImageView.setImageResource(R.drawable.placeholder)
-                petImageView.tag = ""
-            }
-        }
-
-    }
-}
 
 
-    /*private fun openGallery() {
+    private fun openGallery() {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         startActivityForResult(intent, PICK_IMAGE_REQUEST)
     }
@@ -160,10 +121,10 @@ class UploadFragment : Fragment() {
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null) {
             val selectedImageUri = data.data
-            imageView.setImageURI(selectedImageUri)
+            petImageView.setImageURI(selectedImageUri)
 
-            imageView.tag = selectedImageUri.toString()
+            petImageView.tag = selectedImageUri.toString()
         }
     }
 
-}*/
+}
