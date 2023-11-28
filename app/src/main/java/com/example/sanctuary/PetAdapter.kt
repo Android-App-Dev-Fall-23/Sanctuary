@@ -10,26 +10,29 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 const val PET_EXTRA = "PET_EXTRA"
-class PetAdapter( private val pets: List<PetEntity>) : RecyclerView.Adapter<PetAdapter.PetViewHolder>() {
-
+class PetAdapter(
+    private val pets: List<PetEntity>,
+    private val onDeleteClicked: (PetEntity) -> Unit
+) : RecyclerView.Adapter<PetAdapter.PetViewHolder>() {
 
     inner class PetViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nameTextView: TextView = itemView.findViewById(R.id.nameTv)
         val speciesTextView: TextView = itemView.findViewById(R.id.speciesTv)
         val lostLocationTextView: TextView = itemView.findViewById(R.id.lostLocationTv)
-        val imageView: ImageView= itemView.findViewById(R.id.imageView)
-        // Add more views as needed for other attributes
+        val imageView: ImageView = itemView.findViewById(R.id.imageView)
+        val deleteImageView: ImageView = itemView.findViewById(R.id.deleteIV)
 
         init {
-            // Add a click listener to the itemView
             itemView.setOnClickListener {
-                // Get the clicked pet
                 val clickedPet = pets[adapterPosition]
-
-                // Create an intent to launch the PetDetailFragment
                 val intent = Intent(itemView.context, PetDetailActivity::class.java)
                 intent.putExtra(PET_EXTRA, clickedPet)
                 itemView.context.startActivity(intent)
+            }
+
+            deleteImageView.setOnClickListener {
+                val clickedPet = pets[adapterPosition]
+                onDeleteClicked.invoke(clickedPet) // Trigger deletion callback
             }
         }
     }

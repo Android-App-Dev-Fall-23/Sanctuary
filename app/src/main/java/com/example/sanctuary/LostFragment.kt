@@ -1,11 +1,11 @@
 package com.example.sanctuary
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -44,7 +44,16 @@ class LostFragment : Fragment() {
         val recyclerView: RecyclerView = view.findViewById(R.id.LostRv)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        adapter = PetAdapter(entries) // Use the global adapter
+        adapter = PetAdapter(entries) { pet ->
+            // Handle deletion here
+            lifecycleScope.launch(Dispatchers.IO) {
+                petDao.deletePet(pet) // Delete from the database
+
+                withContext(Dispatchers.Main) {
+                    fetchData() // Refresh the list after deletion
+                }
+            }// Use the global adapter
+        }
 
         // Set the adapter to the RecyclerView
         recyclerView.adapter = adapter
@@ -92,7 +101,7 @@ class LostFragment : Fragment() {
         originalEntries.filterTo(entries) {
             it.name.contains(query, true) ||
                     it.species.contains(query, true) ||
-                    it.breed.contains(query, true)
+                    it.lostLocation.contains(query, true)
         }
         adapter.notifyDataSetChanged()
     }
