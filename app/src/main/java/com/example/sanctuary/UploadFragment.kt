@@ -1,6 +1,7 @@
 package com.example.sanctuary
 
 import android.app.Activity
+import android.app.Activity.RESULT_OK
 import android.content.Context
 import android.content.Intent
 import android.icu.util.Calendar
@@ -31,27 +32,35 @@ class UploadFragment : Fragment() {
     private lateinit var editTextLostLocation: EditText
     private lateinit var editTextOtherDetails: EditText
 
-    private lateinit var imageView: ImageView
-    private val PICK_IMAGE_REQUEST = 1
+    private lateinit var petImageView: ImageView
+    private lateinit var selectImgButton: Button
+
+    companion object {
+        val IMAGE_REQUEST_CODE = 100
+    }
 
 
     private lateinit var btnSubmit: Button
-    interface onPetEntryListener{
+
+    interface onPetEntryListener {
         fun onPetEntryAdded(PetEntry: PetEntity)
     }
+
     private var listener: onPetEntryListener? = null
 
-    override fun onAttach(context: Context){
+    override fun onAttach(context: Context) {
         super.onAttach(context)
-        if(context is onPetEntryListener){
+        if (context is onPetEntryListener) {
             listener = context
-        } else{
+        } else {
             throw RuntimeException("$context must implement onPetEntryListener")
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_upload, container, false)
 
@@ -69,26 +78,31 @@ class UploadFragment : Fragment() {
         editTextOwnerContact = view.findViewById(R.id.editTextOwnerContact)
         editTextLostLocation = view.findViewById(R.id.editTextLostLocation)
         editTextOtherDetails = view.findViewById(R.id.editTextOtherDetails)
-        imageView = view.findViewById(R.id.imageView)
+
+        selectImgButton = view.findViewById(R.id.btnSelectImage)
+        petImageView = view.findViewById(R.id.petImageView)
 
         // Add a click listener to the "Select Image" button
-        view.findViewById<Button>(R.id.btnSelectImage).setOnClickListener {
-            openGallery()
+        selectImgButton.setOnClickListener {
+            pickImageGallery()
+        }
 
-            btnSubmit.setOnClickListener {
-                // Retrieve values from EditTexts
-                val name = editTextName.text.toString()
-                val species = editTextSpecies.text.toString()
-                val breed = editTextBreed.text.toString()
-                val color = editTextColor.text.toString()
-                val age = editTextAge.text.toString().toIntOrNull() ?: -99
-                val ownerContact = editTextOwnerContact.text.toString()
-                val lostLocation = editTextLostLocation.text.toString()
-                val otherDetails = editTextOtherDetails.text.toString()
+        btnSubmit.setOnClickListener {
+            // Retrieve values from EditTexts
+            val name = editTextName.text.toString()
+            val species = editTextSpecies.text.toString()
+            val breed = editTextBreed.text.toString()
+            val color = editTextColor.text.toString()
+            val age = editTextAge.text.toString().toIntOrNull() ?: -99
+            val ownerContact = editTextOwnerContact.text.toString()
+            val lostLocation = editTextLostLocation.text.toString()
+            val otherDetails = editTextOtherDetails.text.toString()
 
-                val selectedImageUri = imageView.tag as? String
-                val imagePath = selectedImageUri ?: ""
+            val selectedImageUri = petImageView.tag as? String
+            val imagePath = selectedImageUri ?: ""
 
+            // Create a new Pet entity
+            if (imagePath.isNotBlank()) {
                 // Create a new Pet entity
                 val newPet = PetEntity(
                     name = name,
@@ -100,18 +114,42 @@ class UploadFragment : Fragment() {
                     lostLocation = lostLocation,
                     otherDetails = otherDetails,
                     imagePath = imagePath
-
                 )
+
                 // Now 'newPet' contains the values from the EditTexts
-
-
                 listener?.onPetEntryAdded(newPet)
-
+            } else {
+                // Handle case where no image is selected
+                // Show a message to the user or prevent submission
             }
         }
+
+    }
+    private fun pickImageGallery(){
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, IMAGE_REQUEST_CODE)
     }
 
-    private fun openGallery() {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?){
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == IMAGE_REQUEST_CODE && resultCode == RESULT_OK){
+            val selectedImageUri = data?.data
+            if (selectedImageUri != null) {
+                petImageView.setImageURI(selectedImageUri)
+                petImageView.tag = selectedImageUri.toString()
+            }else {
+                // Set a placeholder image when no image is selected
+                petImageView.setImageResource(R.drawable.placeholder)
+                petImageView.tag = ""
+            }
+        }
+
+    }
+}
+
+
+    /*private fun openGallery() {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         startActivityForResult(intent, PICK_IMAGE_REQUEST)
     }
@@ -128,4 +166,4 @@ class UploadFragment : Fragment() {
         }
     }
 
-}
+}*/

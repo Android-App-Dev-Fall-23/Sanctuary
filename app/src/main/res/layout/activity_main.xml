@@ -24,9 +24,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:menu="@menu/bottom_navigation"
         android:background="@color/colorPrimary"
-        app:itemIconTint="@color/colorAccent"
-        app:itemTextColor="@color/colorAccent"
-        app:itemActiveIndicatorStyle="@color/white"
+        app:itemIconSize="22dp"
         android:theme="@style/BottomNavigationTheme"/>
 
     <androidx.appcompat.widget.Toolbar
@@ -36,10 +34,11 @@
         android:background="@color/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:title="Sanctuary"
-        app:titleTextColor="@color/white"
-        tools:layout_editor_absoluteX="3dp"
-        tools:layout_editor_absoluteY="0dp" />
+        app:titleTextColor="@color/white" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

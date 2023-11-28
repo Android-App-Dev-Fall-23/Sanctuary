@@ -11,9 +11,4 @@
         android:icon="@drawable/ic_lost"
         android:title="Lost" />
 
-        <item
-            android:id="@+id/navigation_login"
-            android:icon="@drawable/ic_login"
-            android:title="Login" />
-
 </menu>
