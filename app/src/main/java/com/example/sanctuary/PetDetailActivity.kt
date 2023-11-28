@@ -1,8 +1,10 @@
 package com.example.sanctuary
 
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.TextView
+import com.bumptech.glide.Glide
 
 class PetDetailActivity : AppCompatActivity() {
 
@@ -22,6 +24,7 @@ class PetDetailActivity : AppCompatActivity() {
         val ownerContactTextView: TextView = findViewById(R.id.ownerContactTextView)
         val lostLocationTextView: TextView = findViewById(R.id.lostLocationTextView)
         val otherDetailsTextView: TextView = findViewById(R.id.otherDetailsTextView)
+        val imageView: ImageView = findViewById(R.id.imageView2)
 
         // Set text values
         nameTextView.text = "Name: ${pet.name}"
@@ -32,5 +35,12 @@ class PetDetailActivity : AppCompatActivity() {
         ownerContactTextView.text = "Owner Contact: ${pet.ownerContact}"
         lostLocationTextView.text = "Lost Location: ${pet.lostLocation}"
         otherDetailsTextView.text = "Other details: ${pet.otherDetails}"
+
+        Glide.with(this)
+            .load(pet.imagePath) // Assuming there's an 'imageUrl' property in your PetEntity
+            .placeholder(R.drawable.placeholder) // Placeholder image while loading
+            .error(R.drawable.placeholder) // Image to show in case of an error
+            .into(imageView)
+
     }
 }
