@@ -39,11 +39,6 @@ class MainActivity : AppCompatActivity(),UploadFragment.onPetEntryListener {
                     supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragment).commit()
                     true
                 }
-                R.id.navigation_login -> {
-                    val fragment = FoundFragment()
-                    supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragment).commit()
-                    true
-                }
                 else -> false
             }
         }

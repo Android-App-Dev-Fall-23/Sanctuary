@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,36 +16,67 @@ import kotlinx.coroutines.withContext
 lateinit var entries: MutableList<PetEntity>
 lateinit var petDao: PetDao
 private lateinit var adapter:PetAdapter
+private lateinit var searchView: SearchView
 
 class LostFragment : Fragment() {
+
+    private lateinit var originalEntries: MutableList<PetEntity>
+    private lateinit var entries: MutableList<PetEntity>
+    private lateinit var petDao: PetDao
+    private lateinit var adapter: PetAdapter
+    private lateinit var searchView: SearchView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_lost, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        originalEntries = mutableListOf() // Store the original data
         entries = mutableListOf()
         petDao = AppDatabase.getDatabase(requireContext()).petDao()
 
+        searchView = view.findViewById(R.id.searchBar)
         val recyclerView: RecyclerView = view.findViewById(R.id.LostRv)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        val adapter = PetAdapter(entries)
+
+        adapter = PetAdapter(entries) // Use the global adapter
+
+        // Set the adapter to the RecyclerView
         recyclerView.adapter = adapter
 
+        // Fetch data initially
+        fetchData()
+
+        // Set up search functionality
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                newText?.let {
+                    filterEntries(it) // Filter data on query change
+                }
+                return true
+            }
+        })
+    }
+
+    private fun fetchData() {
         lifecycleScope.launch(Dispatchers.IO) {
             requireActivity().application.let { application ->
-                // Retrieve entries using a Flow
-                val allEntries =
-                    (application as Sanctuary).db.petDao().getAllPets()
+                val allEntries = (application as Sanctuary).db.petDao().getAllPets()
 
-                // Update UI on the main thread
                 withContext(Dispatchers.Main) {
                     allEntries.collect { entriesFromDatabase ->
+                        originalEntries.clear()
+                        originalEntries.addAll(entriesFromDatabase)
+
                         entries.clear()
                         entries.addAll(entriesFromDatabase)
 
@@ -52,33 +84,16 @@ class LostFragment : Fragment() {
                     }
                 }
             }
+        }
+    }
+
+    private fun filterEntries(query: String) {
+        entries.clear()
+        originalEntries.filterTo(entries) {
+            it.name.contains(query, true) ||
+                    it.species.contains(query, true) ||
+                    it.breed.contains(query, true)
         }
         adapter.notifyDataSetChanged()
-    }
-    fun addPetEntry(petEntry: PetEntity){
-        // Use coroutine to perform database operation asynchronously
-        lifecycleScope.launch(Dispatchers.IO) {
-
-            // Insert the entry into the database
-            requireActivity().application.let { application ->
-
-                (application as Sanctuary).db.petDao().insertPet(petEntry)
-
-                // Retrieve entries using a Flow
-                val allEntries =
-                    (application as Sanctuary).db.petDao().getAllPets()
-
-                // Update UI on the main thread
-                allEntries.collect { entriesFromDatabase ->
-                    withContext(Dispatchers.Main) {
-                        entries.clear()
-                        entries.addAll(entriesFromDatabase)
-                        adapter.notifyDataSetChanged()
-                    }
-                }
-
-            }
-        }
-
     }
 }
