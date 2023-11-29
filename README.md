@@ -143,6 +143,8 @@
 ## GitHub Project board
 
 [Add screenshot of your Project Board with the updated status of issues for Milestone 3. Note that these should include the updated issues you worked on for this sprint and not be a duplicate of Milestone 2 Project board.] <img src="https://imgur.com/a/A4bMvqR.png" width=600>
+![image](https://github.com/Android-App-Dev-Fall-23/Sanctuary/assets/104771992/4efb1792-9a95-43ff-b6b7-87bbc2f6627f)
+
 
 ## Completed user stories
 
