@@ -144,6 +144,8 @@
 
 [Add screenshot of your Project Board with the updated status of issues for Milestone 3. Note that these should include the updated issues you worked on for this sprint and not be a duplicate of Milestone 2 Project board.] <img src="https://imgur.com/a/A4bMvqR.png" width=600>
 ![image](https://github.com/Android-App-Dev-Fall-23/Sanctuary/assets/104771992/4efb1792-9a95-43ff-b6b7-87bbc2f6627f)
+![image](https://github.com/Android-App-Dev-Fall-23/Sanctuary/assets/104771992/fc50d905-4619-497d-ab67-d357d1c0083a)
+
 
 
 ## Completed user stories
@@ -151,6 +153,12 @@
 - List the completed user stories from this unit
 - List any pending user stories / any user stories you decided to cut
 from the original requirements
+-Completed Found Animal Screen. However, decided to cut from original requirements. There is one stream of lost pets. When an animal is found it will be deleted from the screen.
+- Created a separate screen to search for lost pets. But this was cut from original requirements.
+- Added search functionality to Lost Screen.
+- Added ability to delete a pet from Lost screen once it is found.
+- Added Data Persistence to Sanctuary app so lost pets will be displayed even when app is closed, unless deleted.
+- Added styling and coloring to customize app.
 
 [Add video/gif of your current application that shows build progress]
 <img src="https://i.imgur.com/thDL3ln.gif" width=600>
